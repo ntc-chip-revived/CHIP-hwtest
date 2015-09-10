@@ -1,0 +1,12 @@
+phy#1
+	Interface wlan1
+		ifindex 5
+		wdev 0x100000001
+		addr 7e:c7:09:05:cd:33
+		type managed
+phy#0
+	Interface wlan0
+		ifindex 4
+		wdev 0x1
+		addr 7c:c7:09:05:cd:33
+		type managed

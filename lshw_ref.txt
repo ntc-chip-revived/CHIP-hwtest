@@ -1,0 +1,19 @@
+chip
+    description: Computer
+    product: NextThing C.H.I.P.
+    width: 32 bits
+  *-core
+       description: Motherboard
+       capabilities: nextthing_chip allwinner_sun5i-r8
+     *-cpu
+          description: CPU
+          product: cpu
+          bus info: cpu@0
+     *-memory
+          description: System memory
+  *-network:0
+       description: Wireless interface
+       logical name: wlan0
+  *-network:1
+       description: Wireless interface
+       logical name: wlan1
