@@ -8,6 +8,20 @@ if [[ -e log.txt ]]; then rm log.txt; fi
 
 echo -e "\n"
 
+echo -n -e "# Turn on wlan0..."
+if ip link set wlan0 up; then
+        echo "OK";
+else
+        echo "ERROR";
+fi
+
+echo -n -e "# Turn on wlan1..."
+if ip link set wlan1 up; then
+        echo "OK";
+else
+        echo "ERROR";
+fi
+
 echo -n -e "# Hardware list..."
 if lshw -disable usb -disable scsi |grep -v size|grep -v serial| grep -v physical |grep -v configuration| diff - /usr/lib/hwtest/lshw_ref.txt >>log.txt; then
 	echo "# Hardware list...OK";
