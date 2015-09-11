@@ -1,9 +1,9 @@
 #!/bin/sh
 
 #turn on wifi once before to avoid console spamming....
-ip link set wlan0 up
-ip link set wlan1 up
-sleep 3
+dmesg -n3
+
+echo -e "\n"
 
 echo "############################################################"
 echo "# [ CHIP HW TEST ]                                         #"
