@@ -91,24 +91,25 @@ else
 fi
 
 
-echo -e -n "# testing NAND write speed 1K block size..."
-if dd if=/dev/zero of=/NAND_write_speed bs=1k count=256k 2>&1 |sed -e 's/,.*//g' |diff - /usr/lib/hwtest/dd_ref0.txt >>log.txt; then
-  TESTS_PASSED=$((TESTS_PASSED + 1))
-	echo "OK"
-else
-  TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR"
-fi
+#echo -e -n "# testing NAND write speed 1K block size..."
+#if dd if=/dev/zero of=/NAND_write_speed bs=1k count=256k 2>&1 |sed -e 's/,.*//g' |diff - /usr/lib/hwtest/dd_ref0.txt >>log.txt; then
+#  TESTS_PASSED=$((TESTS_PASSED + 1))
+#	echo "OK"
+#else
+#  TESTS_FAILED=$((TESTS_FAILED + 1))
+#	echo "ERROR"
+#fi
+#
+#echo -e -n "# testing NAND write speed 16K block size..."
+#if dd if=/dev/zero of=/NAND_write_speed bs=16k count=16k 2>&1 |sed -e 's/,.*//g' |diff - /usr/lib/hwtest/dd_ref1.txt >>log.txt; then
+#  TESTS_PASSED=$((TESTS_PASSED + 1))
+#	echo "OK"
+#else
+#  TESTS_FAILED=$((TESTS_FAILED + 1))
+#	echo "ERROR"
+#fi
 
-echo -e -n "# testing NAND write speed 16K block size..."
-if dd if=/dev/zero of=/NAND_write_speed bs=16k count=16k 2>&1 |sed -e 's/,.*//g' |diff - /usr/lib/hwtest/dd_ref1.txt >>log.txt; then
-  TESTS_PASSED=$((TESTS_PASSED + 1))
-	echo "OK"
-else
-  TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR"
-fi
-
+## usb stick write test - WARNING will *DESTROY* contencts on it
 #if [[ -b /dev/sda ]];
 #then
 #  echo -e "\n * USB device /dev/sda found - type yes to *DESTROY* it's contents"
