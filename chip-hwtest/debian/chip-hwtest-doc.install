@@ -1,1 +1,2 @@
-#DOCS#
+bin/* /usr/bin/
+lib/* /usr/lib/
