@@ -10,4 +10,5 @@ sudo cp *.txt /usr/lib/hwtest
 if [ "$(cat /etc/os-release |grep ID_LIKE)" == "ID_LIKE=debian" ];
 then
   sudo apt-get install stress
+  sudo apt-get install lshw
 fi
