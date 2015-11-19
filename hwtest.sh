@@ -82,7 +82,7 @@ fi
 #./power.sh
 
 echo -e -n "# GPIO expander test..."
-if [ "$(cat /sys/bus/i2c/devices/i2c-2/2-0038/name)" == "pcf8574a" ]; then
+if [ "$(cat /sys/bus/i2c/devices/i2c-2/2-0038/name)" = "pcf8574a" ]; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
 	echo "OK"
 else
