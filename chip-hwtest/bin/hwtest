@@ -90,47 +90,6 @@ else
 	echo "ERROR"
 fi
 
-# Use a 3k3 resistor to connect the GPIO pins like this:
-# XIO-P0 -> XIO-P1
-# XIO-P2 -> XIO-P3
-# XIO-P4 -> XIO-P5
-# XIO-P6 -> XIO-P7
-
-echo -e -n "# testing GPIO XIO-P0 through XIO-P7..."
-GPIO=408
-GPIO_PAIR=409
-GPIO_ERROR=0
-while [ $GPIO -lt 415 ]; do
-	echo $GPIO > /sys/class/gpio/export
-	echo $GPIO_PAIR > /sys/class/gpio/export
-
-	echo "out" > /sys/class/gpio/gpio$GPIO/direction
-	echo 1 > /sys/class/gpio/gpio$GPIO/active_low
-	echo 1 > /sys/class/gpio/gpio$GPIO/value
-	echo "in" > /sys/class/gpio/gpio$GPIO_PAIR/direction
-	echo 1 > /sys/class/gpio/gpio$GPIO_PAIR/active_low
-	sleep 0.1
-
-	if [[ "$(cat /sys/class/gpio/gpio$GPIO_PAIR/value)" != "1" ]]; then
-        	GPIO_ERROR=$GPIO
-		break;
-	fi
-
-	GPIO=$((GPIO+2))
-	GPIO_PAIR=$((GPIO_PAIR+2))
-	echo $GPIO_ERROR
-	echo $GPIO > /sys/class/gpio/unexport
-        echo $GPIO_PAIR > /sys/class/gpio/unexport
-done
-a
-if [[ "$GPIO_ERROR" -gt "0" ]]; then
-	TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR GPIO#$GPIO_ERROR "
-else
-	echo "OK"
-	TESTS_PASSED=$((TESTS_PASSED + 1))
-fi
-
 
 #echo -e -n "# testing NAND write speed 1K block size..."
 #if dd if=/dev/zero of=/NAND_write_speed bs=1k count=256k 2>&1 |sed -e 's/,.*//g' |diff - /usr/lib/hwtest/dd_ref0.txt >>log.txt; then
