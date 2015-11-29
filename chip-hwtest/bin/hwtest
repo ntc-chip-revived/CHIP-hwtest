@@ -12,7 +12,7 @@ echo "############################################################"
 echo "# [ CHIP HW TEST ]                                         #"
 echo "############################################################"
 
-if [[ -e log.txt ]]; then rm log.txt; fi
+if [ -e log.txt ]; then rm log.txt; fi
 
 echo -e "\n"
 
@@ -82,7 +82,7 @@ fi
 #./power.sh
 
 echo -e -n "# GPIO expander test..."
-if [[ "$(cat /sys/bus/i2c/devices/i2c-2/2-0038/name)" == "pcf8574a" ]]; then
+if [ "$(cat /sys/bus/i2c/devices/i2c-2/2-0038/name)" = "pcf8574a" ]; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
 	echo "OK"
 else
@@ -110,11 +110,11 @@ fi
 #fi
 
 ## usb stick write test - WARNING will *DESTROY* contencts on it
-#if [[ -b /dev/sda ]];
+#if [ -b /dev/sda ];
 #then
 #  echo -e "\n * USB device /dev/sda found - type yes to *DESTROY* it's contents"
 #  read confirmation
-#  if [[ "${confirmation}" == "yes" ]]; 
+#  if [ "${confirmation}" == "yes" ];
 #  then
 #    echo -e "\n * testing USB write speed 1K block size"
 #    dd if=/dev/zero of=/dev/sda bs=1k count=256k
@@ -150,7 +150,7 @@ fi
 #	echo "ERROR"
 #fi
 
-if [[ "$TESTS_FAILED" -eq "0" ]]; then
+if [ "$TESTS_FAILED" -eq "0" ]; then
   echo "### ALL TESTS PASSED ###" >&2
 else
   echo "### ${TESTS_FAILED} TESTS FAILED ###" >&2

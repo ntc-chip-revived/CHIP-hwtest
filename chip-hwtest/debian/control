@@ -1,20 +1,13 @@
 Source: chip-hwtest
-Section: unknown
-Priority: optional
-Maintainer: unknown <chip@unknown>
+Section: misc
+Priority: extra
+Maintainer: Alex Kaplan <software@nextthing.co>
 Build-Depends: debhelper (>= 9)
 Standards-Version: 3.9.5
-Homepage: <insert the upstream URL, if relevant>
-#Vcs-Git: git://anonscm.debian.org/collab-maint/chip-hwtest.git
-#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/chip-hwtest.git;a=summary
+Homepage: http://nextthing.co
 
 Package: chip-hwtest
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
-
-Package: chip-hwtest-doc
-Architecture: all
-Description: documentation for chip-hwtest
- <insert long description, indented with spaces>
+Depends: ${shlibs:Depends}, ${misc:Depends}, stress, lshw
+Description: C.H.I.P hardware diagnostic
+ Series of tests for checking the status of chip hardware.
