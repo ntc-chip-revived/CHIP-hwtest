@@ -9,3 +9,8 @@ SRC_DIR=$
 
 sudo cp -R chip-hwtest/bin/* /usr/bin/
 sudo cp -R chip-hwtest/lib/* /usr/lib/
+
+if [ "$(cat /etc/os-release | grep ID_LIKE)" == "ID_LIKE=debian"];
+then
+	sudo apt-get install stress lshw
+fi
