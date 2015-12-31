@@ -58,8 +58,8 @@ echo "CHARGE_CTL2="$CHARGE_CTL2
 
 ################################
 #read battery voltage	79h, 78h	0 mV -> 000h,	1.1 mV/bit	FFFh -> 4.5045 V
-BAT_VOLT_LSB=$(i2cget -y -f 0 0x34 0x79)
 BAT_VOLT_MSB=$(i2cget -y -f 0 0x34 0x78)
+BAT_VOLT_LSB=$(i2cget -y -f 0 0x34 0x79)
 
 #echo $BAT_VOLT_MSB $BAT_VOLT_LSB
 
@@ -70,8 +70,8 @@ echo "Battery voltage = "$BAT_VOLT"mV"
 
 ###################
 #read Battery Discharge Current	7Ah, 7Bh	0 mV -> 000h,	0.5 mA/bit	FFFh -> 4.095 V
-BAT_IDISCHG_LSB=$(i2cget -y -f 0 0x34 0x7B)
 BAT_IDISCHG_MSB=$(i2cget -y -f 0 0x34 0x7A)
+BAT_IDISCHG_LSB=$(i2cget -y -f 0 0x34 0x7B)
 
 #echo $BAT_IDISCHG_MSB $BAT_IDISCHG_LSB
 
@@ -82,8 +82,8 @@ echo "Battery discharge current = "$BAT_IDISCHG"mA"
 
 ###################
 #read Battery Charge Current	7Ch, 7Dh	0 mV -> 000h,	0.5 mA/bit	FFFh -> 4.095 V
-BAT_ICHG_LSB=$(i2cget -y -f 0 0x34 0x7D)
 BAT_ICHG_MSB=$(i2cget -y -f 0 0x34 0x7C)
+BAT_ICHG_LSB=$(i2cget -y -f 0 0x34 0x7D)
 
 #echo $BAT_ICHG_MSB $BAT_ICHG_LSB
 
