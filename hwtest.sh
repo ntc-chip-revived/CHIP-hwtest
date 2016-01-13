@@ -31,7 +31,7 @@ if ip link set wlan1 up; then
   echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-  echo "ERROR: wlan1";
+  echo "ERROR";
 fi
 
 echo -n -e "# Hardware list..."
@@ -40,7 +40,7 @@ if lshw -disable usb -disable scsi |grep -v size|grep -v serial| grep -v physica
 	echo "# Hardware list...OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-  echo "# Hardware list...ERROR: Hardware list";
+  echo "# Hardware list...ERROR";
 fi
 
 echo -e -n "# I2C bus 0..."
@@ -49,7 +49,7 @@ if i2cdetect -y 0 |diff - /usr/lib/hwtest/i2cdetect_ref0.txt >>log.txt; then
 	echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR: I2C bus 0";
+	echo "ERROR";
 fi
 
 echo -e -n "# I2C bus 1..."
@@ -58,7 +58,7 @@ if i2cdetect -y 1 |diff - /usr/lib/hwtest/i2cdetect_ref1.txt >>log.txt; then
 	echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR: I2C bus 1";
+	echo "ERROR";
 fi
 
 echo -e -n "# I2C bus 2..."
@@ -67,7 +67,7 @@ if i2cdetect -y 2 |diff - /usr/lib/hwtest/i2cdetect_ref2.txt >>log.txt; then
 	echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR: I2C bus 2";
+	echo "ERROR";
 fi
 
 echo -n -e "# testing AXP209 on I2C bus 0..."
@@ -76,7 +76,7 @@ if dmesg |grep axp |sed -e 's/\[.*\]//' |diff - /usr/lib/hwtest/axp_ref.txt >>lo
 	echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR: AXP209";
+	echo "ERROR";
 fi
 #./battery.sh
 #./power.sh
@@ -87,7 +87,7 @@ if [ "$(cat /sys/bus/i2c/devices/i2c-2/2-0038/name)" = "pcf8574a" ]; then
 	echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR: GPIO expander";
+	echo "ERROR";
 fi
 
 
@@ -129,7 +129,7 @@ if stress -q --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s; then
 	echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR: Stress test";
+	echo "ERROR";
 fi
 
 echo -e -n "# Wifi enumeration test..."
@@ -138,7 +138,7 @@ if iw dev|grep -v addr |grep -v ssid |diff - /usr/lib/hwtest/wifi_ref0.txt >>log
 	echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR: Wifi enumeration";
+	echo "ERROR";
 fi
 
 echo -e -n "# NAND bit flips test..."
@@ -147,7 +147,7 @@ if false; then
     echo "OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
-    echo "ERROR: NAND bit flips";
+    echo "ERROR";
 fi
 
 
