@@ -1,3 +1,10 @@
+chip-hwtest (0.2) unstable; urgency=low
+
+  * Added new NAND test.
+  * Added dependencies for NAND test.
+
+ -- Ben Young <software@nextthing.co>  Wed, 13 Jan 2015 15:56:05 -0800
+
 chip-hwtest (0.1) unstable; urgency=low
 
   * Initial Release.
