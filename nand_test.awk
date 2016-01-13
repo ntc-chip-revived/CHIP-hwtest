@@ -33,7 +33,7 @@ END {
  }
  rms_max = sqrt( rms_max-(avg_max*avg_max) );
 
- if((uc>0) || (avg_max>limit) || (rms_max>_rms_limit))
+ if((uc>0) || (avg_max>limit) || (rms_max>rms_limit))
  {
 	exit 1;
  }
