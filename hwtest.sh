@@ -141,6 +141,15 @@ else
 	echo "ERROR"
 fi
 
+echo -e -n "# Checking bitflips on NAND..."
+if nand_test.sh; then
+  TESTS_PASSED=$((TESTS_PASSED + 1))
+	echo "OK"
+else
+  TESTS_FAILED=$((TESTS_FAILED + 1))
+	echo "ERROR"
+fi
+	
 #echo -e -n "# Searching for mobile hotspot..."
 #if iw dev wlan0 scan |grep -q "        SSID: NTC 4G OMG"; then
 #  TESTS_PASSED=$((TESTS_PASSED + 1))
