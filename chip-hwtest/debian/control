@@ -1,0 +1,13 @@
+Source: chip-hwtest
+Section: misc
+Priority: extra
+Maintainer: Alex Kaplan <software@nextthing.co>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: http://nextthing.co
+
+Package: chip-hwtest
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, stress, lshw, bc
+Description: C.H.I.P hardware diagnostic
+ Series of tests for checking the status of chip hardware.
