@@ -37,7 +37,7 @@ fi
 echo -n -e "# Hardware list..."
 if lshw -disable usb -disable scsi |grep -v size|grep -v serial| grep -v physical |grep -v configuration| diff - /usr/lib/hwtest/lshw_ref.txt >>log.txt; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
-	echo "Hardware list...OK";
+	echo "# Hardware list...OK";
 else
   TESTS_FAILED=$((TESTS_FAILED + 1))
   echo "# Hardware list...ERROR: Hardware list";
