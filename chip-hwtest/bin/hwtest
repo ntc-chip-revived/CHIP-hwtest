@@ -149,8 +149,12 @@ fi
 #  TESTS_FAILED=$((TESTS_FAILED + 1))
 #	echo "ERROR"
 #fi
-echo -e -n "# Checking bitflips on NAND... "
+echo -e -n "# Checking bit flips on NAND... "
 nand_test.sh
+
+echo -e -n "# Checking bad blocks on NAND... "
+bbcheck.sh
+
 
 if [ "$TESTS_FAILED" -eq "0" ]; then
   echo "### ALL TESTS PASSED ###" >&2
