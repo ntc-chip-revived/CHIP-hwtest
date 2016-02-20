@@ -1,15 +1,21 @@
-chip-hwtest (0.3) unstable; urgency=low
+chip-hwtest (0.4) unstable; urgency=low
 
   * Added bad block test.
 
- -- Alex Kaplan <software@nextthing.co>  Tue, 16 Feb 2015 15:56:05 -0800
+ -- Ben Young <software@nextthing.co>  Fri, 19 Feb 2016 16:10:05 -0800
+
+chip-hwtest (0.3) unstable; urgency=low
+
+  * Added a new NAND test to run when hwtest is called.
+
+ -- Ben Young <software@nextthing.co>  Wed, 13 Jan 2016 20:29:05 -0800
 
 chip-hwtest (0.2) unstable; urgency=low
 
   * Added new NAND test.
   * Added dependencies for NAND test.
 
- -- Ben Young <software@nextthing.co>  Wed, 13 Jan 2015 15:56:05 -0800
+ -- Ben Young <software@nextthing.co>  Wed, 13 Jan 2016 15:56:05 -0800
 
 chip-hwtest (0.1) unstable; urgency=low
 
