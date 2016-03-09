@@ -7,7 +7,7 @@ Standards-Version: 3.9.5
 Homepage: http://nextthing.co
 
 Package: chip-hwtest
-Architecture: any
+Architecture: armhf
 Depends: ${shlibs:Depends}, ${misc:Depends}, stress, lshw, bc, gawk, mtd-utils
 Description: C.H.I.P hardware diagnostic
  Series of tests for checking the status of chip hardware.
