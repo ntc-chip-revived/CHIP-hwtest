@@ -71,7 +71,7 @@ else
 fi
 
 echo -n -e "# testing AXP209 on I2C bus 0..."
-if dmesg |grep axp |sed -e 's/\[.*\]//' |diff - /usr/lib/hwtest/axp_ref.txt >>log.txt; then
+if dmesg |grep AXP20 |sed -e 's/\[.*\]//' |diff - /usr/lib/hwtest/axp_ref.txt >>log.txt; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
 	echo "OK"
 else
