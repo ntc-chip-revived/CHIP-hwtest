@@ -1,3 +1,2 @@
  axp20x 0-0034: AXP20x variant AXP209 found
- input: axp20x-pek as /devices/platform/soc@01c00000/1c2ac00.i2c/i2c-0/0-0034/axp20x-pek/input/input0
  axp20x 0-0034: AXP20X driver loaded
