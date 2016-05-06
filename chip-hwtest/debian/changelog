@@ -1,3 +1,9 @@
+chip-hwtest (0.5) unstable; urgency=low
+
+  * Change target architecture in /debian/.
+
+ -- Ben Young <software@nextthing.co>  Tue, 08 Mar 2016 21:10:05 -0800
+
 chip-hwtest (0.4) unstable; urgency=low
 
   * Added bad block test.
