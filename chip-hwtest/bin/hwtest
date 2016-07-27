@@ -52,14 +52,14 @@ else
 	echo "ERROR"
 fi
 
-echo -e -n "# I2C bus 1..."
-if i2cdetect -y 1 |diff - /usr/lib/hwtest/i2cdetect_ref1.txt >>log.txt; then
-  TESTS_PASSED=$((TESTS_PASSED + 1))
-	echo "OK"
-else
-  TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR"
-fi
+#echo -e -n "# I2C bus 1..."
+#if i2cdetect -y 1 |diff - /usr/lib/hwtest/i2cdetect_ref1.txt >>log.txt; then
+#  TESTS_PASSED=$((TESTS_PASSED + 1))
+#	echo "OK"
+#else
+#  TESTS_FAILED=$((TESTS_FAILED + 1))
+#	echo "ERROR"
+#fi
 
 echo -e -n "# I2C bus 2..."
 if i2cdetect -y 2 |diff - /usr/lib/hwtest/i2cdetect_ref2.txt >>log.txt; then

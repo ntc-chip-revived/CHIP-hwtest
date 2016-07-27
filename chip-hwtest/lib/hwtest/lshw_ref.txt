@@ -9,11 +9,16 @@ chip
           description: CPU
           product: cpu
           bus info: cpu@0
+          capacity: 1008MHz
+          capabilities: cpufreq
      *-memory
           description: System memory
   *-network:0
        description: Wireless interface
        logical name: wlan0
   *-network:1
+       description: Ethernet interface
+       logical name: usb0
+  *-network:2
        description: Wireless interface
        logical name: wlan1

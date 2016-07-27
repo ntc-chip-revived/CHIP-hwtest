@@ -1,2 +1,3 @@
  axp20x 0-0034: AXP20x variant AXP209 found
+ axp20x-gpio axp20x-gpio: AXP209 GPIO driver loaded
  axp20x 0-0034: AXP20X driver loaded
