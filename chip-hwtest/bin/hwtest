@@ -62,7 +62,7 @@ else
 fi
 
 echo -n -e "# testing AXP209 on I2C bus 0..."
-AXP_PRESENT="$(dmesg |grep -o 'axp20x 0-0034')"
+AXP_PRESENT="$(dmesg |grep -o 0-0034)"
 if [[ ! -z $AXP_PRESENT ]]; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
 	echo "OK"
