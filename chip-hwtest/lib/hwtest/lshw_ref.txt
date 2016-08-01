@@ -1,4 +1,4 @@
-chip
+rxos
     description: Computer
     product: NextThing C.H.I.P.
     width: 32 bits
@@ -19,6 +19,3 @@ chip
   *-network:1
        description: Ethernet interface
        logical name: usb0
-  *-network:2
-       description: Wireless interface
-       logical name: wlan1
