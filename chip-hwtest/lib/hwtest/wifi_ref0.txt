@@ -1,10 +1,5 @@
-phy#1
-	Interface wlan1
-		ifindex 5
-		wdev 0x100000001
-		type managed
 phy#0
 	Interface wlan0
 		ifindex 4
 		wdev 0x1
-		type managed
+		type AP

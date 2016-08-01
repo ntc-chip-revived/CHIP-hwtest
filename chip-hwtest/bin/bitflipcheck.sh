@@ -30,4 +30,4 @@ END {\
   print systime(),temp,co,co_mean,co_rms,co_max,uc; \
 \
 }\
-' temp=$(/usr/sbin/axp209 --temperature | cut -d\  -f1) </tmp/awktmp
+' temp=0 </tmp/awktmp
