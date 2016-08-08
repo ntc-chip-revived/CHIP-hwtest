@@ -1,4 +1,4 @@
-chip
+computer
     description: Computer
     product: NextThing C.H.I.P.
     width: 32 bits
