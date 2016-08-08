@@ -2,6 +2,7 @@ chip-hwtest (0.6) unstable; urgency=low
 
   * Fix issues with new kernel and i2c bus readouts.
   * Generalized i2c reads and lshw hw list [thanks x56!].
+  * Expanded battery.sh readouts [JKW]
 
  -- Ben Young <software@nextthing.co>  Mon, 08 Aug 2016 12:59:05 -0800
 
