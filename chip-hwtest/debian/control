@@ -8,6 +8,6 @@ Homepage: http://nextthing.co
 
 Package: chip-hwtest
 Architecture: armhf
-Depends: ${shlibs:Depends}, ${misc:Depends}, stress, lshw, bc, gawk, mtd-utils
+Depends: ${shlibs:Depends}, ${misc:Depends}, stress, lshw, bc, gawk, mtd-utils-mlc
 Description: C.H.I.P hardware diagnostic
  Series of tests for checking the status of chip hardware.

@@ -1,3 +1,9 @@
+chip-hwtest (0.7) unstable; urgency=low
+
+  * Set dependencie for new mtd-utils-mlc
+
+ -- Ben Young <software@nextthing.co>  Mon, 08 Aug 2016 16:28:05 -0800
+
 chip-hwtest (0.6) unstable; urgency=low
 
   * Fix issues with new kernel and i2c bus readouts.
