@@ -110,7 +110,7 @@ fi
 #	echo "ERROR"
 #fi
 
-## usb stick write test - WARNING will *DESTROY* contencts on it
+## usb stick write test - WARNING will *DESTROY* contents on it
 #if [ -b /dev/sda ];
 #then
 #  echo -e "\n * USB device /dev/sda found - type yes to *DESTROY* it's contents"
