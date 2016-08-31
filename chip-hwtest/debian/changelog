@@ -1,6 +1,7 @@
 chip-hwtest (0.8) unstable; urgency=low
 
   * Minor text fix [VuokkoVuorinnen]
+  * Fix dependency conflict between mtd-utils packages
 
  -- Ben Young <software@nextthing.co>  Mon, 29 Aug 2016 13:16:05 -0800
 
