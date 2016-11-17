@@ -28,6 +28,11 @@ echo "############################################################"
 
 if [ -e log.txt ]; then rm log.txt; fi
 
+# Enable radios if necessary
+if [ -x /usr/sbin/rfkill ]; then
+  /usr/sbin/rfkill unblock all
+fi
+
 echo -e "\n"
 
 echo -n -e "# Turn on wlan0..."
