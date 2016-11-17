@@ -16,6 +16,16 @@ else
   exit $status
 fi
 
+# Blink status led on success if mapped
+blink_status_led() {
+  STATUS_LED="/sys/class/leds/chip:white:status"
+  if [ -d "${STATUS_LED}" ]; then
+    LED_STATE=$(cat "${STATUS_LED}/trigger")
+    echo heartbeat > "${STATUS_LED}/trigger"
+    (sleep 30; echo "${LED_STATE}" > "${STATUS_LED}/trigger") &
+  fi
+}
+
 
 TESTS_FAILED=0
 TESTS_PASSED=0
@@ -185,6 +195,7 @@ fi
 
 if [ "$TESTS_FAILED" -eq "0" ]; then
   echo "### ALL TESTS PASSED ###" >&2
+  blink_status_led
 else
   echo "### ${TESTS_FAILED} TESTS FAILED ###" >&2
 fi
