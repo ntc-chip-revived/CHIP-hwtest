@@ -3,6 +3,20 @@
 #turn on wifi once before to avoid console spamming....
 dmesg -n3
 
+# Make sure this is a C.H.I.P.
+if [ "$(cat /proc/device-tree/model)" = "NextThing C.H.I.P." ]; then
+  MODEL=CHIP
+  VMBYTES=128M
+elif [ "$(cat /proc/device-tree/model)" = "NextThing Crumb" ]; then
+  MODEL=PRO
+  VMBYTES=96M # CHIPPro does not have 2x128M free memory
+else
+  status=$?
+  echo "This is not a C.H.I.P. ... exiting"
+  exit $status
+fi
+
+
 TESTS_FAILED=0
 TESTS_PASSED=0
 
@@ -35,7 +49,7 @@ else
 fi
 
 echo -n -e "# Hardware list..."
-if lshw -disable usb -disable scsi -sanitize |grep -v size|grep -v serial| grep -v physical |grep -v configuration| diff - /usr/lib/hwtest/lshw_ref.txt >>log.txt; then
+if lshw -disable usb -short | sed -e 's/^.\{10\}//' | diff - /usr/lib/hwtest/lshw_ref.txt >>log.txt; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
 	echo "# Hardware list...OK";
 else
@@ -61,18 +75,20 @@ else
 	echo "ERROR"
 fi
 
-echo -e -n "# I2C bus 2..."
-if [[ "$(i2cdetect -y 2 | grep 30 | cut -c29-30)" == "UU" ]]; then
-  TESTS_PASSED=$((TESTS_PASSED + 1))
-	echo "OK"
-else
-  TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR"
+if [ "${MODEL}" = "CHIP" ]; then
+  echo -e -n "# I2C bus 2..."
+  if [[ "$(i2cdetect -y 2 | grep 30 | cut -c29-30)" == "UU" ]]; then
+    TESTS_PASSED=$((TESTS_PASSED + 1))
+    echo "OK"
+  else
+    TESTS_FAILED=$((TESTS_FAILED + 1))
+    echo "ERROR"
+  fi
 fi
 
 echo -n -e "# testing AXP209 on I2C bus 0..."
 AXP_PRESENT="$(dmesg |grep -o 'axp20x 0-0034')"
-if [[ ! -z $AXP_PRESENT ]]; then
+if [[ ! -z "${AXP_PRESENT}" ]]; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
 	echo "OK"
 else
@@ -82,13 +98,15 @@ fi
 #./battery.sh
 #./power.sh
 
-echo -e -n "# GPIO expander test..."
-if [ "$(cat /sys/bus/i2c/devices/i2c-2/2-0038/name)" = "pcf8574a" ]; then
-  TESTS_PASSED=$((TESTS_PASSED + 1))
-	echo "OK"
-else
-  TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR"
+if [ "${MODEL}" = "CHIP" ]; then
+  echo -e -n "# GPIO expander test..."
+  if [ "$(cat /sys/bus/i2c/devices/i2c-2/2-0038/name)" = "pcf8574a" ]; then
+    TESTS_PASSED=$((TESTS_PASSED + 1))
+    echo "OK"
+  else
+    TESTS_FAILED=$((TESTS_FAILED + 1))
+    echo "ERROR"
+  fi
 fi
 
 
@@ -125,7 +143,7 @@ fi
 #fi
 
 echo -n -e "# Doing 10s stress test..."
-if stress -q --cpu 8 --io 4 --vm 2 --vm-bytes 128M --timeout 10s; then
+if stress -q --cpu 8 --io 4 --vm 2 --vm-bytes ${VMBYTES} --hdd 2 --hdd-bytes 100000 --timeout 10s; then
   TESTS_PASSED=$((TESTS_PASSED + 1))
 	echo "OK"
 else
@@ -133,14 +151,15 @@ else
 	echo "ERROR"
 fi
 
-echo -e -n "# Wifi enumeration test..."
-if iw dev|grep -v addr |grep -v ssid |diff - /usr/lib/hwtest/wifi_ref0.txt >>log.txt; then
-  TESTS_PASSED=$((TESTS_PASSED + 1))
-	echo "OK"
-else
-  TESTS_FAILED=$((TESTS_FAILED + 1))
-	echo "ERROR"
-fi
+#### NOTE: Covered by lshw already
+#echo -e -n "# Wifi enumeration test..."
+#if iw dev|grep -v addr |grep -v ssid |diff - /usr/lib/hwtest/wifi_ref0.txt >>log.txt; then
+#  TESTS_PASSED=$((TESTS_PASSED + 1))
+#	echo "OK"
+#else
+#  TESTS_FAILED=$((TESTS_FAILED + 1))
+#	echo "ERROR"
+#fi
 
 #echo -e -n "# Searching for mobile hotspot..."
 #if iw dev wlan0 scan |grep -q "        SSID: NTC 4G OMG"; then
@@ -150,11 +169,13 @@ fi
 #  TESTS_FAILED=$((TESTS_FAILED + 1))
 #	echo "ERROR"
 #fi
-echo -e -n "# Checking bit flips on NAND... "
-nand_test.sh
 
-echo -e -n "# Checking bad blocks on NAND... "
-bbcheck.sh
+#### NOTE: Disable for now, needs compile work
+#echo -e -n "# Checking bit flips on NAND... "
+#nand_test.sh
+#
+#echo -e -n "# Checking bad blocks on NAND... "
+#bbcheck.sh
 
 
 if [ "$TESTS_FAILED" -eq "0" ]; then
