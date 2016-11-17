@@ -198,4 +198,5 @@ if [ "$TESTS_FAILED" -eq "0" ]; then
   blink_status_led
 else
   echo "### ${TESTS_FAILED} TESTS FAILED ###" >&2
+  exit ${TESTS_FAILED}
 fi
